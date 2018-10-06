@@ -74,10 +74,10 @@ jQuery(document).ready(function () {
 		iRegion++;
 	});
 
-	jQuery('#regiones').html(htmlRegion);
-	jQuery('#comunas').html(htmlComunas);
+	jQuery('#region-destino').html(htmlRegion);
+	jQuery('#comuna-destino').html(htmlComunas);
 
-	jQuery('#regiones').change(function () {
+	jQuery('#region-destino').change(function () {
 		var iRegiones = 0;
 		var valorRegion = jQuery(this).val();
 		var htmlComuna = '<option value="sin-comuna">Seleccione comuna</option><option value="sin-comuna">--</option>';
@@ -91,19 +91,50 @@ jQuery(document).ready(function () {
 			}
 			iRegiones++;
 		});
-		jQuery('#comunas').html(htmlComuna);
+		jQuery('#comuna-destino').html(htmlComuna);
 	});
-	jQuery('#comunas').change(function () {
+	jQuery('#comuna-destino').change(function () {
 		if (jQuery(this).val() == 'sin-region') {
-			alert('selecciones Región');
+			alert('seleccione región');
 		} else if (jQuery(this).val() == 'sin-comuna') {
-			alert('selecciones Comuna');
+			alert('seleccione comuna');
 		}
 	});
-	jQuery('#regiones').change(function () {
+	jQuery('#region-destino').change(function () {
 		if (jQuery(this).val() == 'sin-region') {
-			alert('selecciones Región');
+			alert('seleccione región');
 		}
 	});
 
+    jQuery('#region-origen').html(htmlRegion);
+	jQuery('#comuna-origen').html(htmlComunas);
+
+	jQuery('#region-origen').change(function () {
+		var iRegiones = 0;
+		var valorRegion = jQuery(this).val();
+		var htmlComuna = '<option value="sin-comuna">Seleccione comuna</option><option value="sin-comuna">--</option>';
+		jQuery.each(RegionesYcomunas.regiones, function () {
+			if (RegionesYcomunas.regiones[iRegiones].NombreRegion == valorRegion) {
+				var iComunas = 0;
+				jQuery.each(RegionesYcomunas.regiones[iRegiones].comunas, function () {
+					htmlComuna = htmlComuna + '<option value="' + RegionesYcomunas.regiones[iRegiones].comunas[iComunas] + '">' + RegionesYcomunas.regiones[iRegiones].comunas[iComunas] + '</option>';
+					iComunas++;
+				});
+			}
+			iRegiones++;
+		});
+		jQuery('#comuna-origen').html(htmlComuna);
+	});
+	jQuery('#comuna-origen').change(function () {
+		if (jQuery(this).val() == 'sin-region') {
+			alert('seleccione región');
+		} else if (jQuery(this).val() == 'sin-comuna') {
+			alert('seleccione comuna');
+		}
+	});
+	jQuery('#region-origen').change(function () {
+		if (jQuery(this).val() == 'sin-region') {
+			alert('seleccione región');
+		}
+	});
 });

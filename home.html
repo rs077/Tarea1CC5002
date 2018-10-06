@@ -7,7 +7,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script type=”text/javascript”
+            src=”http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js”></script>
     <script src="regionesYcomunas.js"></script>
+    <script type=text/javascript" src="validaciones.js"></script>
+    <script type=”text/javascript”>
+$(document).ready(function(){
+$(“#submit”).click(function(){
+var year = $(#region-origen option:selected).val();
+if(year == “”)
+{
+$(“#msg”).html(“Please select a year”);
+return false;
+}
+});
+});
+</script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-success navbar-dark">
@@ -31,45 +46,57 @@
     </ul>
 </nav>
 <div class="container">
-    <ul>
-        <div id="agregarViaje" class="collapse">
-            <form class="form-horizontal" action="#">
-                <div class="form-group row">
-                    <label class="control-label" for="regiones">Región origen:</label>
-                    <div class="col-sm-10 mr-sm-2">
-                        <select class="form-control" id="regiones" name="regionOrigen"></select>
-                    </div>
+    <div id="agregarViaje" class="collapse">
+        <div id=”msg”></div>
+        <form name="formAgregarViaje" id="formAgregarViaje" class="form-horizontal" method="post" action="#">
+            <!--region origen-->
+            <div class="form-group row">
+                <label class="control-label" for="region-origen">Región origen:</label>
+                <div class="col-sm-10 mr-sm-2">
+                    <select class="form-control" id="region-origen" name="region-origen"></select>
                 </div>
-                <div class="form-group row">
-                    <label class="control-label" for="comunas">Comuna origen:</label>
-                    <div class="col-sm-10 mr-sm-2">
-                        <select class="form-control" id="comunas" name="comunaOrigen"></select>
-                    </div>
+            </div>
+            <!--comuna origen-->
+            <div class="form-group row">
+                <label class="control-label" for="comuna-origen">Comuna origen:</label>
+                <div class="col-sm-10 mr-sm-2">
+                    <select class="form-control" id="comuna-origen" name="comuna-origen"></select>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Submit</button>
-                        <input class="btn btn-primary" type="submit" value="Submit">
-                    </div>
+            </div>
+            <!--region destino-->
+            <div class="form-group row">
+                <label class="control-label" for="region-destino">Región destino:</label>
+                <div class="col-sm-10 mr-sm-2">
+                    <select class="form-control" id="region-destino" name="region-destino"></select>
                 </div>
-            </form>
-        </div>
-    </ul>
-    <ul>
-        <div id="agregarEncargo" class="collapse">
-            form agregar encargo
-        </div>
-    </ul>
-    <ul>
-        <div id="verViajes" class="collapse">
-            form ver viajes
-        </div>
-    </ul>
-    <ul>
-        <div id="verEncargos" class="collapse">
-            form ver encargos
-        </div>
-    </ul>
+            </div>
+            <!--comuna destino-->
+            <div class="form-group row">
+                <label class="control-label" for="comuna-destino">Comuna destino:</label>
+                <div class="col-sm-10 mr-sm-2">
+                    <select class="form-control" id="comuna-destino" name="comuna-destino"></select>
+                </div>
+            </div>
+            <!--boton para agregar viajes-->
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button name=”submit” id="submit" type="submit" class="btn btn-default">Agregar viajes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="agregarEncargo" class="collapse">
+        form agregar encargo
+    </div>
+
+    <div id="verViajes" class="collapse">
+        form ver viajes
+    </div>
+    <div id="verEncargos" class="collapse">
+        form ver encargos
+    </div>
+
 </div>
 
 
