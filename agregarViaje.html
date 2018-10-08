@@ -44,12 +44,13 @@
         <!--fecha viaje-->
         <div class="form-group row">
             <label class="control-label" for="fecha-viaje">Fecha viaje:</label>
-            <input type="text" class="form-control" id="fecha-viaje" name="fecha-viaje">
+            <input type="text" class="form-control" id="fecha-viaje" name="fecha-viaje" placeholder="dd-mm-aaaa">
         </div>
         <!--espacio disponible-->
         <div class="form-group row">
             <label class="control-label" for="espacio-disponible">Espacio disponible:</label>
             <select class="form-control" id="espacio-disponible" name="espacio-disponible">
+                <option value="--">--</option>
                 <option value="10x10x10">10x10x10</option>
                 <option value="20x20x20">20x20x20</option>
                 <option value="30x30x30">30x30x30</option>
@@ -59,6 +60,7 @@
         <div class="form-group row">
             <label class="control-label" for="kilos-disponibles">Kilos disponibles:</label>
             <select class="form-control" id="kilos-disponibles" name="kilos-disponibles">
+                <option value="--">--</option>
                 <option value="200g">200gr</option>
                 <option value="500g">500gr</option>
                 <option value="800g">800gr</option>
@@ -70,19 +72,18 @@
         <!--email viajero-->
         <div class="form-group row">
             <label class="control-label" for="email">Email viajero:</label>
-            <input type="text" class="form-control" id="email" name="email">
+            <input type="text" class="form-control" id="email" name="email" placeholder="correo@correo.cl">
         </div>
         <!--numero celular viajero-->
         <div class="form-group row">
             <label class="control-label" for="celular">Número celular viajero:</label>
-            <input type="text" class="form-control" id="celular" name="celular">
+            <input type="text" class="form-control" id="celular" name="celular" placeholder="+569XXXXXXXX">
         </div>
         <!--boton para enviar formulario-->
         <div class="form-group row">
             <button name=”submit” id="submit" type="submit" class="btn btn-dark">Agregar viaje</button>
         </div>
     </form>
-    <h2 id='caca'>caca</h2>
 </div>
 </body>
 </html>
