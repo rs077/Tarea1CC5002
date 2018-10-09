@@ -24,12 +24,13 @@
         <!--descripcion encargo-->
         <div class="form-group row">
             <label class="control-label" for="descripcion">Descripción encargo:</label>
-            <input type="text" class="form-control" id="descripcion" name="descripcion" maxlength="250">
+            <input type="text" class="form-control" id="descripcion" name="descripcion" maxlength="250" placeholder="El encargo es ...">
         </div>
         <!--espacio-->
         <div class="form-group row">
             <label class="control-label" for="espacio-solicitado">Espacio::</label>
             <select class="form-control" id="espacio-solicitado" name="espacio-solicitado">
+                <option value="--">--</option>
                 <option value="10x10x10">10x10x10</option>
                 <option value="20x20x20">20x20x20</option>
                 <option value="30x30x30">30x30x30</option>
@@ -39,6 +40,7 @@
         <div class="form-group row">
             <label class="control-label" for="kilos-solicitados">Kilos:</label>
             <select class="form-control" id="kilos-solicitados" name="kilos-solicitados">
+                <option value="--">--</option>
                 <option value="200g">200gr</option>
                 <option value="500g">500gr</option>
                 <option value="800g">800gr</option>
@@ -75,16 +77,16 @@
         <!--email encargador-->
         <div class="form-group row">
             <label class="control-label" for="email">Email encargador:</label>
-            <input type="text" class="form-control" id="email" name="email">
+            <input type="text" class="form-control" id="email" name="email" placeholder="correo@correo.cl">
         </div>
         <!--numero celular encargador-->
         <div class="form-group row">
             <label class="control-label" for="celular">Número celular encargador:</label>
-            <input type="text" class="form-control" id="celular" name="celular">
+            <input type="text" class="form-control" id="celular" name="celular" placeholder="+569XXXXXXXX">
         </div>
         <!--boton para enviar formulario-->
         <div class="form-group row">
-            <button name=”submit” id="submit" type="submit" class="btn btn-dark">Agregar encargo</button>
+            <button name=”submit” id="submit" type="submit" class="btn btn-info">Agregar encargo</button>
         </div>
     </form>
 </div>

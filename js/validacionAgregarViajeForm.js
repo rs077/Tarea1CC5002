@@ -1,52 +1,98 @@
-function validateEmail(email)
-{
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
-    {
-        return (true)
+function validateRegionComunaOrigen(region,comuna) {
+    if (region == "sin-region" || comuna == "sin-region" ) {
+        alert("Ingrese region de origen.");
+        return false
     }
-    alert("email invalido")
-    return (false)
+    else if (comuna == "sin-comuna" ) {
+        alert("Ingrese comuna de origen.");
+        return false
+    }
+    return true
 }
-function validatePhone(phone) {
-    var error = "";
-    var stripped = phone.replace(/[\(\)\.\-\ ]/g, '');
 
+function validateRegionComunaDestino(region,comuna) {
+    if (region == "sin-region" || comuna == "sin-region" ) {
+        alert("Ingrese region de destino.");
+        return false
+    }
+    else if (comuna == "sin-comuna" ) {
+        alert("Ingrese comuna de destino.");
+        return false
+    }
+    return true
+}
+
+function validateFecha(date) {
+    // First check for the pattern
+    var regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
+    if(!regex_date.test(date))
+    {
+        alert("Fecha de viaje incorrecta.");
+        return false;
+    }
+    // Parse the date parts to integers
+    var parts   = date.split("-");
+    var day     = parseInt(parts[2], 10);
+    var month   = parseInt(parts[1], 10);
+    var year    = parseInt(parts[0], 10);
+    // Check the ranges of month and year
+    if(year < 1000 || year > 3000 || month == 0 || month > 12)
+    {
+        alert("Fecha de viaje incorrecta.")
+        return false;
+    }
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    // Adjust for leap years
+    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+    {
+        monthLength[1] = 29;
+    }
+    // Check the range of the day
+    return day > 0 && day <= monthLength[month - 1];
+}
+
+function validateEspacioDisponible(espacio) {
+    if (espacio == "--") {
+        alert("Debe seleccionar un espacio.");
+        return false
+    }
+    return true
+}
+
+function validateKilosDisponibles(kilos) {
+    if (kilos == "--") {
+        alert("Debe seleccionar una cantidad de kilos.");
+        return false
+    }
+    return true
+}
+
+function validateEmail(email) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        return true
+    }
+    alert("Email inválido.")
+    return false
+}
+
+function validateCelular(phone) {
+    var stripped = phone.replace(/[\(\)\.\-\ ]/g, '');
     if (stripped == "") {
-        error = "Ingrese un celular.";
-        alert(error)
+        alert("Ingrese un celular.")
+        return false
     } else if (isNaN(parseInt(stripped))) {
         phone = "";
-        error = "El numero de caracteres no permitidos.";
-        alert(error)
+        alert("El numero de caracteres no permitidos.");
+        return false
     } else if (!(stripped.length == 12)) {
         phone = "";
-        error = "El celular tiene un largo incorrecto.";
-        alert(error)
+        alert("El celular tiene un largo incorrecto.")
+        return false
     }
-    return (false)
+    return true
 }
-function validateRegionComunaOrigen(region,comuna) {
-    var error = "";
-    if (region == "sin-region" || comuna == "sin-region" ) {
-        error = "Ingrese region de origen.";
-        alert(error)
-    }
-    else if (comuna == "sin-comuna" ) {
-        error = "Ingrese comuna de origen.";
-        alert(error)
-    }
-}
-function validateRegionComunaDestino(region,comuna) {
-    var error = "";
-    if (region == "sin-region" || comuna == "sin-region" ) {
-        error = "Ingrese region de destino.";
-        alert(error)
-    }
-    else if (comuna == "sin-comuna" ) {
-        error = "Ingrese comuna de destino.";
-        alert(error)
-    }
-}
+
 function validateForm() {
     var regionOrigen = document.forms["formAgregarViaje"]["region-origen"].value;
     var comunaOrigen = document.forms["formAgregarViaje"]["comuna-origen"].value;
@@ -57,13 +103,13 @@ function validateForm() {
     var kilosDisponibles = document.forms["formAgregarViaje"]["kilos-disponibles"].value;
     var email = document.forms["formAgregarViaje"]["email"].value;
     var celular = document.forms["formAgregarViaje"]["celular"].value;
-    window.alert(regionOrigen+" "+comunaOrigen+" "+regionDestino+" "+comunaDestino+" fecha:"
-        +fechaViaje+". "+espacioDisponible+" "+kilosDisponibles);
-    if (validateEmail(email) && validatePhone(celular) && validateRegionComunaOrigen(regionOrigen,comunaOrigen)
-    && validateRegionComunaDestino(regionDestino, comunaDestino)){
+    if (validateRegionComunaOrigen(regionOrigen, comunaOrigen) && validateRegionComunaDestino(regionDestino, comunaDestino) &&
+        validateFecha(fechaViaje) && validateEspacioDisponible(espacioDisponible) && validateKilosDisponibles(kilosDisponibles) &&
+        validateEmail(email) && validateCelular(celular)){
         alert("Viaje agregado.")
         return true
     }
+    alert("Formulario con errores.")
     return false
 }
 
